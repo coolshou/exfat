@@ -4,16 +4,12 @@ exfat-nofuse
 Android ARM Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.<br />
 Originally ported from Android kernel v3.0.
 
-Will not work on no ARM builds.
-Till someone can fix that :)
-
 
 Kudos to ksv1986 for the mutex patch!<br />
 Thanks to JackNorris for being awesome and providing the clear_inode() patch.<br />
 <br />
-Big thanks to lqs for completing the driver!
-Big thanks to benpicco for fixing 3.11.y compatibility!
-
+Big thanks to lqs for completing the driver!<br />
+Big thanks to benpicco for fixing 3.11.y compatibility!<br />
 
 Special thanks to github user AndreiLux for spreading the word about the leak!<br />
 
@@ -46,9 +42,11 @@ edit [linux]/fs/Kconfig
   source "fs/fat/Kconfig"
  +source "fs/exfat/Kconfig"
   source "fs/ntfs/Kconfig"
+  
+ endmenu  
 ```
   
-  endmenu
+
 
 edit [linux]/fs/Makefile
 ```
