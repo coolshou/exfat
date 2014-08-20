@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#extrace
+tar xvf /usr/src/exfat-dkms.tar.bz2
+#use dkms to add driver
+#update module list
+#depmod -aq

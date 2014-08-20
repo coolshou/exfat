@@ -1,0 +1,23 @@
+exfat for Debian
+----------------
+
+Please see ./README for a description of the exfat software.
+
+The Debian exfat source package provides two packages,
+
+ 1) exfat, which the provides the userspace daemon
+ 2) exfat-source, which provides the source for the kernel modules
+
+The exfat-source package can be used in several ways,
+
+ - Using the make-kpkg(1) command provided by the kernel-package Debian
+   package. This will produce a corresponding exfat-modules package for
+   the Debian kernel-image package that you are using. This is "the Debian
+   way". See the "modules_image" section of the make-kpkg(1) man page.
+
+ - Changing to the /usr/src/modules/exfat/ directory and building as
+   the README file instructs using "make; make install". This will build
+   and install a module specific to the system you are building on and is
+   not under control of the packaging system.
+
+ -- jimmy <jimmy@jimmy-alpha>  Tue, 13 May 2014 09:57:42 +0800

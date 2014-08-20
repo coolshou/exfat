@@ -1,0 +1,17 @@
+Source: exfat-dkms
+Section: otherosfs
+Priority: optional
+Maintainer: jimmy <jimmy@jimmy-alpha>
+Build-Depends: debhelper (>= 8.0.0), bzip2
+Standards-Version: 3.9.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/exfat.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/exfat.git;a=summary
+
+Package: exfat-source
+Architecture: all
+Depends: module-assistant, debhelper (>= 7), make, bzip2
+Description: source for the exfat driver.
+ This package provides the source code for the exfat kernel modules.
+ The exfat package is also required in order to make use of these
+ modules. Kernel source or headers are required to compile these modules.

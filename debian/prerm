@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#use dkms to remove driver
+#update module list
+#depmod -aq

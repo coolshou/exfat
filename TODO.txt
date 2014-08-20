@@ -1,0 +1,29 @@
+debian dkms
+
+#build path /var/lib/dkms/<module name(-m)>/<version(-v)>
+#add
+ln -s /usr/src/modules/exfat-dkms /usr/src/exfat-1.2.8-`uname -r`
+dkms add -m exfat -v 1.2.8-`uname -r`
+dkms build -m exfat -v 1.2.8-`uname -r`
+
+#status
+dkms status
+
+#remove
+#dkms remove -m exfat -v 1.2.8-3.13.0-32-generic --all
+dkms remove exfat/1.2.8-3.13.0-32-generic --all
+rm /usr/src/exfat-1.2.8-3.13.0-32-generic
+
+#
+#/var/lib/dkms/exfat/1.2.8-3.13.0-30-generic/source ->
+                 /usr/src/exfat-1.2.8-3.13.0-30-generic
+
+
+1. /etc/kernel/postinst.d
+after kernel install build exfat kernel module
+
+2. /etc/kernel/prerm.d
+before remove kernel, remove loaded exfat.ko
+remove exfat.ko file
+
+3. /etc/kernel/postrm.d
