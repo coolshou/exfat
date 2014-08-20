@@ -60,13 +60,13 @@ edit [linux]/fs/Makefile
 
 Go to:
 > File systems > DOS/FAT/NT
->   check exfat as MODULE (M)
->   (437) Default codepage for exFAT
->   (utf8) Default iocharset for exFAT
+>   check exfat as MODULE (M) <br/>
+>   (437) Default codepage for exFAT <br/>
+>   (utf8) Default iocharset for exFAT <br/>
 
-> ESC to main menu
-> Save an Alternate Configuration File
-> ESC ESC
+> ESC to main menu <br/>
+> Save an Alternate Configuration File <br/>
+> ESC ESC <br/>
 
 build your kernel
 
