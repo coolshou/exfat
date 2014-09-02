@@ -2487,6 +2487,7 @@ module_exit(exit_exfat);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("exFAT Filesystem Driver");
+MODULE_VERSION(EXFAT_VERSION);
 #ifdef MODULE_ALIAS_FS
 MODULE_ALIAS_FS("exfat");
 #endif
