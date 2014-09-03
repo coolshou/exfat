@@ -24,9 +24,9 @@ EXTRA_FLAGS += -I$(PWD)
 # any valid path to the directory in which the target kernel's source is located
 # can be provided on the command line.
 #
-KDIR	:= /lib/modules/$(shell uname -r)/build
-MDIR	:= /lib/modules/$(shell uname -r)
-PWD	:= $(shell pwd)
+KDIR	?= /lib/modules/$(shell uname -r)/build
+MDIR	?= /lib/modules/$(shell uname -r)
+
 #following line will cause problem in x64 system which can not install binutils:i386
 #KREL	:= $(shell cd ${KDIR} && make -s kernelrelease)
 #MDIR	:= /lib/modules/${KREL}
