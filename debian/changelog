@@ -1,3 +1,9 @@
+exfat-dkms (1.2.9-1) UNRELEASED; urgency=medium
+
+  * fix compatable for kernel 3.16
+
+ -- jimmy <jimmy@jimmy-alpha>  Thu, 04 Sep 2014 17:20:46 +0800
+
 exfat-dkms (1.2.8-1) unstable; urgency=low
 
   * Initial release 

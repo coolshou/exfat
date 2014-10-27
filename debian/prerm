@@ -3,3 +3,18 @@
 #use dkms to remove driver
 #update module list
 #depmod -aq
+
+#DEBHELPER#
+
+CVERSION=`dpkg-query -W -f='${Version}' exfat-source | awk -F "-" '{print $1}' | cut -d\: -f2`
+TARGET_KERNEL_VERSION=`uname -r`
+
+case "$1" in
+    remove|upgrade)
+		echo "Removing all DKMS Modules"
+		dkms remove -m exfat -v $CVERSION-$TARGET_KERNEL_VERSION --all > /dev/null
+		echo "Remove link"
+		rm -rf /usr/src/exfat-$CVERSION-$TARGET_KERNEL_VERSION
+		echo "Done."
+        ;;
+esac
