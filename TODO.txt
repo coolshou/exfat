@@ -2,10 +2,10 @@ debian dkms
 
 #build path /var/lib/dkms/<module name(-m)>/<version(-v)>
 #add
-ln -s /usr/src/modules/exfat-dkms /usr/src/exfat-1.2.8-`uname -r`
-dkms add -m exfat -v 1.2.8-`uname -r`
-dkms build -m exfat -v 1.2.8-`uname -r`
-
+sudo ln -s /usr/src/modules/exfat-dkms /usr/src/exfat-1.2.9-`uname -r`
+sudo dkms add -m exfat -v 1.2.9-`uname -r`
+sudo dkms build -m exfat -v 1.2.9-`uname -r`
+dkms mkdeb
 #status
 dkms status
 

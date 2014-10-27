@@ -24,8 +24,9 @@ EXTRA_FLAGS += -I$(PWD)
 # any valid path to the directory in which the target kernel's source is located
 # can be provided on the command line.
 #
-KDIR	?= /lib/modules/$(shell uname -r)/build
-MDIR	?= /lib/modules/$(shell uname -r)
+KVER	?= $(shell uname -r)
+KDIR	:= /lib/modules/$(KVER)/build
+MDIR	:= /lib/modules/$(KVER)
 
 #following line will cause problem in x64 system which can not install binutils:i386
 #KREL	:= $(shell cd ${KDIR} && make -s kernelrelease)
@@ -46,11 +47,14 @@ help:
 install:all exfat.ko
 	rm -f ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat.ko
 	install -m644 -b -D exfat.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat.ko
-	depmod -aq
-
+ifeq ($(DESTDIR),)
+		depmod -aq 
+endif
 uninstall:
 	rm -rf ${DESTDIR}/${MDIR}/kernel/fs/exfat
-	depmod -aq
+ifeq ($(DESTDIR),)
+		depmod -aq
+endif
 
 endif
 
