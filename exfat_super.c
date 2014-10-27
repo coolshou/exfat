@@ -1324,17 +1324,17 @@ static int exfat_file_release(struct inode *inode, struct file *filp)
 
 const struct file_operations exfat_file_operations = {
 	.llseek      = generic_file_llseek,
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,16,0)	
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3,16,0)
 	.read        = do_sync_read,
 	.write       = do_sync_write,
 	.aio_read    = generic_file_aio_read,
 	.aio_write   = generic_file_aio_write,
 #else
-	.read 		 = new_sync_read,
-	.write 		 = new_sync_write,
-	.read_iter 	 = generic_file_read_iter,
+	.read        = new_sync_read,
+	.write       = new_sync_write,
+	.read_iter   = generic_file_read_iter,
 	.write_iter  = generic_file_write_iter,
-#endif	
+#endif
 	.mmap        = generic_file_mmap,
 	.release     = exfat_file_release,
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,36)
@@ -1572,7 +1572,6 @@ static int exfat_write_end(struct file *file, struct address_space *mapping,
 	}
 	return err;
 }
-
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,16,0)
  static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
@@ -2425,10 +2424,10 @@ static void exfat_debug_kill_sb(struct super_block *sb)
 static struct file_system_type exfat_fs_type = {
 	.owner       = THIS_MODULE,
 #if defined(CONFIG_MACH_LGE) || defined(CONFIG_HTC_BATT_CORE)
-	.name 		 = "texfat",
-#else	
+	.name        = "texfat",
+#else
 	.name        = "exfat",
-#endif	
+#endif
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,37)
 	.get_sb      = exfat_get_sb,
 #else
