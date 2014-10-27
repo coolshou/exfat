@@ -372,11 +372,11 @@ static int exfat_d_hashi(const struct dentry *dentry, const struct inode *inode,
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,11,0)
 static int exfat_cmpi(const struct dentry *parent, const struct dentry *dentry,
-                unsigned int len, const char *str, const struct qstr *name)
+		unsigned int len, const char *str, const struct qstr *name)
 #else
 static int exfat_cmpi(const struct dentry *parent, const struct inode *pinode,
-                const struct dentry *dentry, const struct inode *inode,
-                unsigned int len, const char *str, const struct qstr *name)
+		const struct dentry *dentry, const struct inode *inode,
+		unsigned int len, const char *str, const struct qstr *name)
 #endif
 {
 	struct nls_table *t = EXFAT_SB(parent->d_sb)->nls_io;
@@ -385,7 +385,10 @@ static int exfat_cmpi(const struct dentry *parent, const struct inode *pinode,
 	alen = exfat_striptail_len(name);
 	blen = __exfat_striptail_len(len, str);
 	if (alen == blen) {
-		if (nls_strnicmp(t, name->name, str, alen) == 0)
+		if (t == NULL) {
+			if (strnicmp(name->name, str, alen) == 0)
+				return 0;
+		} else if (nls_strnicmp(t, name->name, str, alen) == 0)
 			return 0;
 	}
 	return 1;
@@ -393,11 +396,11 @@ static int exfat_cmpi(const struct dentry *parent, const struct inode *pinode,
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,11,0)
 static int exfat_cmp(const struct dentry *parent, const struct dentry *dentry,
-               unsigned int len, const char *str, const struct qstr *name)
+		unsigned int len, const char *str, const struct qstr *name)
 #else
 static int exfat_cmp(const struct dentry *parent, const struct inode *pinode,
-               const struct dentry *dentry, const struct inode *inode,
-               unsigned int len, const char *str, const struct qstr *name)
+		const struct dentry *dentry, const struct inode *inode,
+		unsigned int len, const char *str, const struct qstr *name)
 #endif
 {
 	unsigned int alen, blen;
@@ -1574,12 +1577,12 @@ static int exfat_write_end(struct file *file, struct address_space *mapping,
 }
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,16,0)
- static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
-								 const struct iovec *iov,
-								loff_t offset, unsigned long nr_segs)
+static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
+					   const struct iovec *iov,
+					   loff_t offset, unsigned long nr_segs)
 #else
- static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
-								struct iov_iter *iter, loff_t offset)
+static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
+					   struct iov_iter *iter, loff_t offset)
 #endif
 {
 	struct inode *inode = iocb->ki_filp->f_mapping->host;
@@ -1597,11 +1600,11 @@ static int exfat_write_end(struct file *file, struct address_space *mapping,
 			return 0;
 	}
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)
-		ret = blockdev_direct_IO(rw, iocb, inode, iter,
-									offset, exfat_get_block);
+	ret = blockdev_direct_IO(rw, iocb, inode, iter,
+					offset, exfat_get_block);
 #elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,1,0)
-		ret = blockdev_direct_IO(rw, iocb, inode, iov,
-									offset, nr_segs, exfat_get_block);
+	ret = blockdev_direct_IO(rw, iocb, inode, iov,
+					offset, nr_segs, exfat_get_block);
 #else
         ret = blockdev_direct_IO(rw, iocb, inode, inode->i_sb->s_bdev, iov,
 					offset, nr_segs, exfat_get_block, NULL);
