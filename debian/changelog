@@ -1,6 +1,8 @@
-exfat-dkms (1.2.9-1) UNRELEASED; urgency=medium
+exfat-dkms (1.2.9-3) UNRELEASED; urgency=medium
 
   * fix compatable for kernel 3.16
+  * mimor update
+  * fix Makefile for exteranl module make
 
  -- jimmy <jimmy@jimmy-alpha>  Thu, 04 Sep 2014 17:20:46 +0800
 

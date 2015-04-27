@@ -1330,8 +1330,13 @@ const struct file_operations exfat_file_operations = {
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,16,0)
 	.read        = do_sync_read,
 	.write       = do_sync_write,
+#ifdef CONFIG_AIO_OPTIMIZATION
 	.aio_read    = generic_file_aio_read,
 	.aio_write   = generic_file_aio_write,
+#else
+	.read_iter   = generic_file_read_iter,
+	.write_iter  = generic_file_write_iter,
+#endif
 #else
 	.read        = new_sync_read,
 	.write       = new_sync_write,
