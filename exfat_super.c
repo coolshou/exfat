@@ -386,7 +386,11 @@ static int exfat_cmpi(const struct dentry *parent, const struct inode *pinode,
 	blen = __exfat_striptail_len(len, str);
 	if (alen == blen) {
 		if (t == NULL) {
+			#if LINUX_VERSION_CODE < KERNEL_VERSION(3,18,0)
 			if (strnicmp(name->name, str, alen) == 0)
+			#else
+			if (strncasecmp(name->name, str, alen) == 0)
+			#endif
 				return 0;
 		} else if (nls_strnicmp(t, name->name, str, alen) == 0)
 			return 0;
