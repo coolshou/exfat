@@ -1,3 +1,9 @@
+exfat-dkms (1.2.9-4) UNRELEASED; urgency=medium
+
+  * fix compatable for kernel 3.19
+
+ -- jimmy <jimmy@jimmy-alpha>  Mon, 27 Apr 2015 14:20:46 +0800
+ 
 exfat-dkms (1.2.9-3) UNRELEASED; urgency=medium
 
   * fix compatable for kernel 3.16
