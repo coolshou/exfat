@@ -1,7 +1,7 @@
 exfat-nofuse
 ============
 
-Android ARM Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.<br />
+Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.<br />
 Originally ported from Android kernel v3.0.
 
 
