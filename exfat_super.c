@@ -218,7 +218,11 @@ static struct inode *exfat_build_inode(struct super_block *sb, FILE_ID_T *fid, l
 static void exfat_detach(struct inode *inode);
 static void exfat_attach(struct inode *inode, loff_t i_pos);
 static inline unsigned long exfat_hash(loff_t i_pos);
+#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,34)
+static int exfat_write_inode(struct inode *inode, int wait);
+#else
 static int exfat_write_inode(struct inode *inode, struct writeback_control *wbc);
+#endif
 static void exfat_write_super(struct super_block *sb);
 
 static void __lock_super(struct super_block *sb)
