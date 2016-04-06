@@ -1363,7 +1363,19 @@ const struct inode_operations exfat_dir_inode_operations = {
 /*======================================================================*/
 /*  File Operations                                                     */
 /*======================================================================*/
-#if LINUX_VERSION_CODE > KERNEL_VERSION(4,1,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,5,0)
+static const char *exfat_get_link(struct dentry *dentry, struct inode *inode, struct delayed_call *done)
+{
+	struct exfat_inode_info *ei = EXFAT_I(inode);
+	if (ei->target != NULL) {
+		char *cookie = ei->target;
+		if (cookie != NULL) {
+			return (char *)(ei->target);
+		}
+	}
+	return NULL;
+}
+#elif LINUX_VERSION_CODE > KERNEL_VERSION(4,1,0)
 static const char *exfat_follow_link(struct dentry *dentry, void **cookie)
 {
 	struct exfat_inode_info *ei = EXFAT_I(dentry->d_inode);
@@ -1380,7 +1392,13 @@ static void *exfat_follow_link(struct dentry *dentry, struct nameidata *nd)
 
 const struct inode_operations exfat_symlink_inode_operations = {
 	.readlink    = generic_readlink,
+if LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0)
 	.follow_link = exfat_follow_link,
+#endif
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,5,0)
+	.get_link = exfat_get_link,
+#endif	
+
 };
 
 static int exfat_file_release(struct inode *inode, struct file *filp)
