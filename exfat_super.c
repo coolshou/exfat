@@ -298,14 +298,14 @@ static int exfat_revalidate_ci(struct dentry *dentry, struct nameidata *nd)
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,7,00)
 	if (flags & LOOKUP_RCU)
 		return -ECHILD;
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3,0,00)
+#else
 	unsigned int flags;
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,0,00)
 	if (nd && nd->flags & LOOKUP_RCU)
 		return -ECHILD;
+#endif
 
-	flags = nd ? nd->flags : 0;
-#else
 	flags = nd ? nd->flags : 0;
 #endif
 
@@ -1392,7 +1392,7 @@ static void *exfat_follow_link(struct dentry *dentry, struct nameidata *nd)
 
 const struct inode_operations exfat_symlink_inode_operations = {
 	.readlink    = generic_readlink,
-if LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0)
 	.follow_link = exfat_follow_link,
 #endif
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,5,0)
