@@ -30,10 +30,8 @@ EXTRA_FLAGS += -I$(PWD)
 KVER	?= $(shell uname -r)
 KDIR	:= /lib/modules/$(KVER)/build
 MDIR	:= /lib/modules/$(KVER)
-
-#following line will cause problem in x64 system which can not install binutils:i386
-#KREL	:= $(shell cd ${KDIR} && make -s kernelrelease)
-#MDIR	:= /lib/modules/${KREL}
+PWD	:= $(shell pwd)
+KREL	:= $(shell cd ${KDIR} && make -s kernelrelease)
 PWD	:= $(shell pwd)
 
 export CONFIG_EXFAT_FS := m
