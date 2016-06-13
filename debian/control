@@ -2,7 +2,7 @@ Source: exfat-nofuse
 Section: admin
 Priority: optional
 Maintainer: Eugene San (eugenesan) <eugenesan@gmail.com>
-Build-Depends: debhelper (>= 7.0.50~), dh-modaliases, gcc-4.9
+Build-Depends: debhelper (>= 7.0.50~), dh-modaliases, gcc-4.9 | gcc-5 | gcc (>= 5.3.1)
 Standards-Version: 3.9.1
 Homepage: https://github.com/coolshou/exfat
 Vcs-Browser: https://github.com/coolshou/exfat
