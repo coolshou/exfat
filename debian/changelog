@@ -1,3 +1,9 @@
+exfat-nofuse (1.2.9+20160613) UNRELEASED; urgency=medium
+
+  * add support kernel 4.7
+
+ -- coolshou <coolshou@coolshou-ubuntu>  Mon, 13 Jun 2016 23:05:15 +0800
+
 exfat-nofuse (1.2.9+20160316-0) unstable; urgency=medium
 
   * New upstream snapshot (a8d79fc258336dfe71a07e6c3e0f434a630b9e37)
