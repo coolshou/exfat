@@ -11,7 +11,7 @@ ARCH_SUFFIX=i386
 endif
 
 %:
-	dh "$@"
+	dh "$@"  --with python2
 
 # we don't actually build/clean the source here, it's dkms
 override_dh_auto_clean:
