@@ -1391,7 +1391,7 @@ static const char *exfat_get_link(struct dentry *dentry, struct inode *inode, st
 	}
 	return NULL;
 }
-#elif LINUX_VERSION_CODE > KERNEL_VERSION(4,1,0)
+#elif LINUX_VERSION_CODE > KERNEL_VERSION(4,2,0)
 static const char *exfat_follow_link(struct dentry *dentry, void **cookie)
 {
 	struct exfat_inode_info *ei = EXFAT_I(dentry->d_inode);
@@ -1697,7 +1697,7 @@ static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
 					   const struct iovec *iov,
 					   loff_t offset, unsigned long nr_segs)
 #endif
-#elif LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
+#elif LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0)
 static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,
 					   struct iov_iter *iter, loff_t offset)
 #elif LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
@@ -1712,7 +1712,7 @@ static ssize_t exfat_direct_IO(struct kiocb *iocb, struct iov_iter *iter)
 	struct address_space *mapping = iocb->ki_filp->f_mapping;
 #endif
 	ssize_t ret;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,2,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,1,0)
 	int rw;
 
 	rw = iov_iter_rw(iter);
