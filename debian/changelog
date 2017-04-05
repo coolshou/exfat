@@ -1,9 +1,8 @@
-exfat-nofuse (1.2.9+20170204) UNRELEASED; urgency=medium
+exfat-nofuse (1.2.9+20170405) UNRELEASED; urgency=medium
 
-  * add support kernel 4.8
-  * 
+  * fix for kernel 4.9, 4.10
 
- -- coolshou <coolshou@coolshou-desktop>  Sat, 04 Feb 2017 23:48:42 +0800
+ -- coolshou <coolshou@coolshou-desktop>  Wed, 05 Apr 2017 21:41:55 +0800
 
 exfat-nofuse (1.2.9+20160316-0) unstable; urgency=medium
 

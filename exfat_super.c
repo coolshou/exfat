@@ -1103,16 +1103,25 @@ out:
 	DPRINTK("exfat_rmdir exited\n");
 	return err;
 }
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,9,0)
+static int exfat_rename(struct inode *old_dir, struct dentry *old_dentry,
+						struct inode *new_dir, struct dentry *new_dentry,
+						unsigned int flags)
+#else
 static int exfat_rename(struct inode *old_dir, struct dentry *old_dentry,
 						struct inode *new_dir, struct dentry *new_dentry)
+#endif
 {
 	struct inode *old_inode, *new_inode;
 	struct super_block *sb = old_dir->i_sb;
 	struct timespec ts;
 	loff_t i_pos;
 	int err;
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,9,0)
+	/* We don't have renameat2(2) support */
+	if (flags)
+		return (-EINVAL);
+#endif
 	__lock_super(sb);
 
 	DPRINTK("exfat_rename entered\n");
@@ -1295,8 +1304,11 @@ static int exfat_setattr(struct dentry *dentry, struct iattr *attr)
 		&& exfat_allow_set_time(sbi, inode)) {
 		attr->ia_valid &= ~(ATTR_MTIME_SET | ATTR_ATIME_SET | ATTR_TIMES_SET);
 	}
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,9,0)
+	error = setattr_prepare(dentry, attr);
+#else
 	error = inode_change_ok(inode, attr);
+#endif
 	attr->ia_valid = ia_valid;
 	if (error)
 		return error;
@@ -1407,7 +1419,9 @@ static void *exfat_follow_link(struct dentry *dentry, struct nameidata *nd)
 #endif
 
 const struct inode_operations exfat_symlink_inode_operations = {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,10,0)
 	.readlink    = generic_readlink,
+#endif
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0)
 	.follow_link = exfat_follow_link,
 #endif
