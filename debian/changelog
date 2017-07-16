@@ -1,3 +1,9 @@
+exfat-nofuse (1.2.24+20170617) unstable; urgency=medium
+
+  * import samsung 1.2.24
+
+ -- coolshou <coolshou2060@gmail.com>  Sat, 17 Jun 2017 11:07:30 +0800
+
 exfat-nofuse (1.2.9+20170608) unstable; urgency=medium
 
   * fix for kernel 4.11

@@ -16,23 +16,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/************************************************************************/
-/*                                                                      */
-/*  PROJECT : exFAT & FAT12/16/32 File System                           */
-/*  FILE    : exfat_data.c                                              */
-/*  PURPOSE : exFAT Configuable Data Definitions                        */
-/*                                                                      */
-/*----------------------------------------------------------------------*/
-/*  NOTES                                                               */
-/*                                                                      */
-/*----------------------------------------------------------------------*/
-/*  REVISION HISTORY (Ver 0.9)                                          */
-/*                                                                      */
-/*  - 2010.11.15 [Joosun Hahn] : first writing                          */
-/*                                                                      */
-/************************************************************************/
-
 #include "exfat_config.h"
+#include "exfat_global.h"
 #include "exfat_data.h"
 #include "exfat_oal.h"
 
@@ -40,13 +25,14 @@
 #include "exfat_cache.h"
 #include "exfat_nls.h"
 #include "exfat_super.h"
-#include "exfat_core.h"
+#include "exfat.h"
 
 /*======================================================================*/
 /*                                                                      */
 /*                    GLOBAL VARIABLE DEFINITIONS                       */
 /*                                                                      */
 /*======================================================================*/
+FS_STRUCT_T fs_struct[MAX_DRIVE];
 
 /*----------------------------------------------------------------------*/
 /*  File Manager                                                        */
