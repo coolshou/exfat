@@ -2,7 +2,7 @@
 
 DRIVER_NAME := exfat
 VERSION := $(shell dpkg-parsechangelog | grep '^Version:' | cut -d' ' -f2 | cut -d- -f1 | cut -d\: -f2)
-PKG_kernel_src  := exfat-kernel-source
+PKG_kernel_src  := $(DRIVER_NAME)-kernel-source
 ARCH := $(shell dpkg --print-architecture)
 ifeq ($(ARCH),amd64)
 ARCH_SUFFIX=x86_64
