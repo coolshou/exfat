@@ -51,9 +51,12 @@ clean:
 help:
 	$(MAKE) -C $(KDIR) M=$(PWD) help
 
-install:all exfat.ko
+install:all
 	rm -f ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat.ko
-	install -m644 -b -D exfat.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat.ko
+	rm -f ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_fs.ko
+	rm -f ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_core.ko
+	install -m644 -b -D exfat_core.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_core.ko
+	install -m644 -b -D exfat_fs.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_fs.ko
 ifeq ($(DESTDIR),)
 		depmod -aq 
 endif
