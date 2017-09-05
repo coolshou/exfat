@@ -1,19 +1,19 @@
 Source: exfat-nofuse
-Section: admin
+Section: kernel
 Priority: optional
 Maintainer: Eugene San (eugenesan) <eugenesan@gmail.com>
-Build-Depends: debhelper (>= 8.0), dh-python, dh-modaliases, gcc-4.9 | gcc-5 | gcc (>= 5.3.1)
+Build-Depends: debhelper (>= 8.0), dkms, dh-python, dh-modaliases, gcc-4.9 | gcc-5 | gcc (>= 5.3.1)
 Standards-Version: 3.9.1
 Homepage: https://github.com/coolshou/exfat
 Vcs-Browser: https://github.com/coolshou/exfat
 Vcs-Git: https://github.com/coolshou/exfat.git
 
-Package: exfat-kernel-source
+Package: exfat-nofuse-source
 Architecture: all
-Depends: ${misc:Depends}, dkms, linux-libc-dev, libc6-dev
+Depends: ${misc:Depends}, dkms, make, xz-utils
 XB-Modaliases: ${modaliases}
-Recommends: exfat-utils
+Recommends: exfat-utils, module-assistant
 Conflicts: exfat-modaliases
-Replaces: exfat-modaliases, exfat-fuse
+Replaces: exfat-modaliases, exfat-fuse, exfat-kernel-source
 Description: exFAT & FAT12/16/32 File System driver source
  This package contains exFAT & FAT12/16/32 File System driver source.
