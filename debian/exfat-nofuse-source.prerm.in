@@ -7,7 +7,7 @@ set -e
 
 #DEBHELPER#
 
-CVERSION=`dpkg-query -W -f='${Version}' #DRIVER_NAME#-kernel-source | awk -F "-" '{print $1}' | cut -d\: -f2`
+CVERSION=`dpkg-query -W -f='${Version}' #DRIVER_NAME#-nofuse-source | awk -F "-" '{print $1}' | cut -d\: -f2`
 case "$1" in
     remove|upgrade)
 		echo "Removing all DKMS Modules"
