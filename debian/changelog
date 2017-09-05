@@ -1,3 +1,9 @@
+exfat-nofuse (1.2.24+20170905) unstable; urgency=medium
+
+  * Support exfat capacity more than 2TB 
+
+ -- jimmy <jimmy@jimmy-alpha>  Tue, 05 Sep 2017 10:26:41 +0800
+
 exfat-nofuse (1.2.24+20170617) unstable; urgency=medium
 
   * import samsung 1.2.24

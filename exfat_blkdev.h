@@ -52,10 +52,10 @@ extern "C" {
 	INT32 bdev_shutdown(void);
 	INT32 bdev_open(struct super_block *sb);
 	INT32 bdev_close(struct super_block *sb);
-	INT32 bdev_read(struct super_block *sb, UINT32 secno, struct buffer_head **bh, UINT32 num_secs, INT32 read);
-	INT32 bdev_write(struct super_block *sb, UINT32 secno, struct buffer_head *bh, UINT32 num_secs, INT32 sync);
+	INT32 bdev_read(struct super_block *sb, sector_t secno, struct buffer_head **bh, UINT32 num_secs, INT32 read);
+	INT32 bdev_write(struct super_block *sb, sector_t secno, struct buffer_head *bh, UINT32 num_secs, INT32 sync);
 	INT32 bdev_sync(struct super_block *sb);
-	INT32 bdev_reada(struct super_block *sb, UINT32 secno, UINT32 num_secs);
+	INT32 bdev_reada(struct super_block *sb, sector_t secno, UINT32 num_secs);
 #ifdef __cplusplus
 }
 #endif
