@@ -26,9 +26,9 @@ EXTRA_FLAGS += -I$(PWD)
 
 #
 # KDIR is a path to a directory containing kernel source.
-# It can be specified on the command line passed to make to enable the module to 
+# It can be specified on the command line passed to make to enable the module to
 # be built and installed for a kernel other than the one currently running.
-# By default it is the path to the symbolic link created when 
+# By default it is the path to the symbolic link created when
 # the current kernel's modules were installed, but
 # any valid path to the directory in which the target kernel's source is located
 # can be provided on the command line.
@@ -58,14 +58,14 @@ install:all
 	install -m644 -b -D exfat_core.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_core.ko
 	install -m644 -b -D exfat_fs.ko ${DESTDIR}${MDIR}/kernel/fs/exfat/exfat_fs.ko
 ifeq ($(DESTDIR),)
-		depmod -aq 
+		depmod -a
 endif
 uninstall:
 	rm -rf ${DESTDIR}/${MDIR}/kernel/fs/exfat
 ifeq ($(DESTDIR),)
-		depmod -aq
+		depmod -a
 endif
 
 endif
 
-.PHONY : all clean install uninstall 
+.PHONY : all clean install uninstall
