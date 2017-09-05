@@ -112,10 +112,16 @@ static time_t accum_days_in_year[] = {
 
 TIMESTAMP_T *tm_current(TIMESTAMP_T *tp, UINT8 tz_utc)
 {
-	struct timespec ts = CURRENT_TIME_SEC;
-	time_t second = ts.tv_sec;
-	time_t day, leap_day, month, year;
+	struct timespec ts;
+	time_t second, day, leap_day, month, year;
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,8,0)
+	ts = CURRENT_TIME_SEC;
+#else
+	ktime_get_real_ts(&ts);
+#endif
+
+	second = ts.tv_sec;
 	if (!tz_utc)
 		second -= sys_tz.tz_minuteswest * SECS_PER_MIN;
 

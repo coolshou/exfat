@@ -1,6 +1,9 @@
 exfat-nofuse (1.2.24+20170905) unstable; urgency=medium
 
-  * Support exfat capacity more than 2TB 
+  * Support exfat capacity more than 2TB
+  * Stop using CURRENT_TIME_SEC
+  *    This is going away in 4.12 and is not y2038 safe.
+  *    Use current_time(inode) and ktime_get_real_ts where appropriate.
 
  -- jimmy <jimmy@jimmy-alpha>  Tue, 05 Sep 2017 10:26:41 +0800
 
