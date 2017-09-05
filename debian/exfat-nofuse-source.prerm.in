@@ -11,7 +11,7 @@ CVERSION=`dpkg-query -W -f='${Version}' #DRIVER_NAME#-nofuse-source | awk -F "-"
 case "$1" in
     remove|upgrade)
 		echo "Removing all DKMS Modules"
-		dkms remove -m #DRIVER_NAME# -v $CVERSION --all > /dev/null || true
+		dkms remove #DRIVER_NAME#/$CVERSION --all > /dev/null || true
 		echo "Done."
         ;;
 esac
