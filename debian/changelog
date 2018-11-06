@@ -1,4 +1,10 @@
-exfat-nofuse (1.2.24+20180409) UNRELEASED; urgency=medium
+exfat-nofuse (1.2.24+20181106) unstable; urgency=medium
+
+  * fix kernel 4.18 compile error
+
+ -- jimmy <jimmy@jimmy-alpha>  Tue, 06 Nov 2018 09:13:31 +0800
+
+exfat-nofuse (1.2.24+20180409) unstable; urgency=medium
 
   * fix kernel 4.16 compile error
 
