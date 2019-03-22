@@ -1,3 +1,10 @@
+exfat-nofuse (1.2.24+20190322) UNRELEASED; urgency=medium
+
+  * fix In the 5.0 kernel, only the mount namespace code should use the MS_*
+macos. Filesystems should use the SB_* ones.
+
+ -- jimmy <jimmy@jimmy-alpha>  Fri, 22 Mar 2019 15:17:00 +0800
+
 exfat-nofuse (1.2.24+20181106) unstable; urgency=medium
 
   * fix kernel 4.18 compile error

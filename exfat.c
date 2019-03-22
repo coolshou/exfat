@@ -1756,8 +1756,13 @@ void fs_error(struct super_block *sb)
 
 	if (opts->errors == EXFAT_ERRORS_PANIC)
 		panic("[EXFAT] Filesystem panic from previous error\n");
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)
+	else if ((opts->errors == EXFAT_ERRORS_RO) && !(sb->s_flags & SB_RDONLY)) {
+		sb->s_flags |= SB_RDONLY;
+#else
 	else if ((opts->errors == EXFAT_ERRORS_RO) && !(sb->s_flags & MS_RDONLY)) {
 		sb->s_flags |= MS_RDONLY;
+#endif
 		printk(KERN_ERR "[EXFAT] Filesystem has been set read-only\n");
 		ST_LOG("[EXFAT] Filesystem has been set read-only\n");
 	}
@@ -5017,7 +5022,7 @@ INT32 multi_sector_read(struct super_block *sb, sector_t sec, struct buffer_head
 	FS_INFO_T *p_fs = &(EXFAT_SB(sb)->fs_info);
 
 	if (((sec+num_secs) > (p_fs->PBR_sector+p_fs->num_sectors)) && (p_fs->num_sectors > 0)) {
-		PRINT("[EXFAT] multi_sector_read: out of range error! (sec = %llu, num_secs = %d)\n", 
+		PRINT("[EXFAT] multi_sector_read: out of range error! (sec = %llu, num_secs = %d)\n",
 			(unsigned long long)sec, num_secs);
 		fs_error(sb);
 		return ret;
@@ -5040,7 +5045,7 @@ INT32 multi_sector_write(struct super_block *sb, sector_t sec, struct buffer_hea
 	FS_INFO_T *p_fs = &(EXFAT_SB(sb)->fs_info);
 
 	if ((sec+num_secs) > (p_fs->PBR_sector+p_fs->num_sectors) && (p_fs->num_sectors > 0)) {
-		PRINT("[EXFAT] multi_sector_write: out of range error! (sec = %llu, num_secs = %d)\n", 
+		PRINT("[EXFAT] multi_sector_write: out of range error! (sec = %llu, num_secs = %d)\n",
 			(unsigned long long)sec, num_secs);
 		fs_error(sb);
 		return ret;
