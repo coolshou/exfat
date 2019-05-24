@@ -2,7 +2,7 @@
 
 DRIVER_NAME := exfat
 VERSION := $(shell dpkg-parsechangelog | grep '^Version:' | cut -d' ' -f2 | cut -d- -f1 | cut -d\: -f2)
-source_package  := $(DRIVER_NAME)-nofuse-source
+source_package  := $(DRIVER_NAME)-dkms
 source_target   := usr/src/modules/$(DRIVER_NAME)
 source_debdir   := debian/$(source_package)/$(source_target)/debian
 

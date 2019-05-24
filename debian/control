@@ -1,4 +1,4 @@
-Source: exfat-nofuse
+Source: exfat-dkms
 Section: kernel
 Priority: optional
 Maintainer: Eugene San (eugenesan) <eugenesan@gmail.com>
@@ -8,7 +8,7 @@ Homepage: https://github.com/coolshou/exfat
 Vcs-Browser: https://github.com/coolshou/exfat
 Vcs-Git: https://github.com/coolshou/exfat.git
 
-Package: exfat-nofuse-source
+Package: exfat-dkms
 Architecture: all
 Depends: ${misc:Depends}, dkms, make, xz-utils
 XB-Modaliases: ${modaliases}

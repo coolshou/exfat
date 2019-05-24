@@ -1,4 +1,4 @@
-Source: exfat-nofuse
+Source: exfat-dkms
 Section: kernel
 Priority: optional
 Maintainer: Eugene San (eugenesan) <eugenesan@gmail.com>
@@ -6,10 +6,10 @@ Build-Depends: debhelper (>= 8)
 Standards-Version: 3.9.4
 Homepage: https://github.com/coolshou/exfat
 
-Package: exfat-nofuse-modules-_KVERS_
+Package: exfat-dkms-modules-_KVERS_
 Architecture: all
 Depends: linux-modules-_KVERS_
-Provides: exfat-nofuse-modules
+Provides: exfat-dkms-modules
 Recommends: exfat-utils
 Description: exFAT & FAT12/16/32 File System driver modules for Linux (kernel _KVERS_)
  This package contains the set of loadable kernel modules for the This
@@ -18,6 +18,6 @@ Description: exFAT & FAT12/16/32 File System driver modules for Linux (kernel _K
  This package contains the compiled kernel modules for _KVERS_
  .
  If you have compiled your own kernel, you will most likely need to build your
- own exfat-nofuse-modules. The exfat-nofuse-source package has been provided for
+ own exfat-dkms-modules. The exfat-dkms package has been provided for
  use with the Debian's module-assistant or kernel-package utilities to produce a
- version of exfat-nofuse-modules for your kernel.
+ version of exfat-dkms-modules for your kernel.
