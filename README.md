@@ -1,6 +1,8 @@
 exfat-nofuse
 ============
 
+**Start on kernel 5.4, exfat is include in  drivers/staging/exfat**
+
 Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.<br />
 Originally ported from Android kernel v3.0.
 
@@ -45,7 +47,7 @@ edit [linux]/fs/Kconfig
   
  endmenu  
 ```
-  
+
 
 
 edit [linux]/fs/Makefile
