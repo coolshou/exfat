@@ -1,23 +1,23 @@
 exfat-nofuse
 ============
 
+**Start on kernel 5.7, exfat is include in fs/exfat/**
+
 **Start on kernel 5.4, exfat is include in  drivers/staging/exfat**
 
-Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.<br />
+Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems.`<br />`
 Originally ported from Android kernel v3.0.
 
+Kudos to ksv1986 for the mutex patch!`<br />`
+Thanks to JackNorris for being awesome and providing the clear_inode() patch.`<br />`
+`<br />`
+Big thanks to lqs for completing the driver!`<br />`
+Big thanks to benpicco for fixing 3.11.y compatibility!`<br />`
 
-Kudos to ksv1986 for the mutex patch!<br />
-Thanks to JackNorris for being awesome and providing the clear_inode() patch.<br />
-<br />
-Big thanks to lqs for completing the driver!<br />
-Big thanks to benpicco for fixing 3.11.y compatibility!<br />
-
-Special thanks to github user AndreiLux for spreading the word about the leak!<br />
-
+Special thanks to github user AndreiLux for spreading the word about the leak!`<br />`
 
 Installing as a stand-alone module:
-====================================
+===================================
 
     make
     sudo make install
@@ -27,17 +27,19 @@ To load the driver manually, run this as root:
     modprobe exfat
 
 You may also specify custom toolchains by using CROSS_COMPILE flag, in my case:
->CROSS_COMPILE=../dorimanx-SG2-I9100-Kernel/android-toolchain/bin/arm-eabi-
+
+> CROSS_COMPILE=../dorimanx-SG2-I9100-Kernel/android-toolchain/bin/arm-eabi-
 
 Installing as a part of the kernel:
-======================================
+===================================
 
 Let's take [linux] as the path to your kernel source dir...
 
-	cd [linux]
+    cd [linux]
 	cp -rvf exfat-nofuse [linux]/fs/exfat
 
 edit [linux]/fs/Kconfig
+
 ```
  menu "DOS/FAT/NT Filesystems"
   
@@ -48,27 +50,27 @@ edit [linux]/fs/Kconfig
  endmenu  
 ```
 
-
-
 edit [linux]/fs/Makefile
+
 ```
   obj-$(CONFIG_FAT_FS)    += fat/
  +obj-$(CONFIG_EXFAT_FS)  += exfat/
   obj-$(CONFIG_BFS_FS)    += bfs/
 ```
 
-	cd [linux]
+    cd [linux]
 	make menuconfig
 
 Go to:
-> File systems > DOS/FAT/NT
->   check exfat as MODULE (M) <br/>
->   (437) Default codepage for exFAT <br/>
->   (utf8) Default iocharset for exFAT <br/>
 
-> ESC to main menu <br/>
-> Save an Alternate Configuration File <br/>
-> ESC ESC <br/>
+> File systems > DOS/FAT/NT
+> check exfat as MODULE (M) `<br/>`
+> (437) Default codepage for exFAT `<br/>`
+> (utf8) Default iocharset for exFAT `<br/>`
+
+> ESC to main menu `<br/>`
+> Save an Alternate Configuration File `<br/>`
+> ESC ESC `<br/>`
 
 build your kernel
 
